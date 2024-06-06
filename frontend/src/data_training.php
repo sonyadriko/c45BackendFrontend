@@ -1,7 +1,7 @@
 <?php 
-include 'koneksi.php';
+include '../config/database.php';
 
-require 'vendor/autoload.php'; // Make sure this path is correct
+require '../vendor/autoload.php'; // Make sure this path is correct
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $excelFile = $_FILES['excelFile']['tmp_name'];
 
                 // Save the uploaded Excel file to the backend folder with the name 'data100.xlsx'
-                $backendExcelFile = '../backend/data100.xlsx';
+                $backendExcelFile = '../../backend/data100.xlsx';
                 if (move_uploaded_file($excelFile, $backendExcelFile)) {
 
                     try {
@@ -96,32 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- loader-->
-    <link href="assets/css/pace.min.css" rel="stylesheet" />
-    <script src="assets/js/pace.min.js"></script>
-
-    <!--plugins-->
-    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
-
-    <!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
-    <!--Theme Styles-->
-    <link href="assets/css/dark-theme.css" rel="stylesheet" />
-    <link href="assets/css/semi-dark.css" rel="stylesheet" />
-    <link href="assets/css/header-colors.css" rel="stylesheet" />
-
     <title>Data Training</title>
+    <?php include 'scripts.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -218,8 +195,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="clear_all_data.php" method="post">
-                                    <button type="submit" class="btn btn-danger">Delete All Data</button>
+                                <form id="clearAllForm" action="clear_all_data.php" method="post">
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Delete All
+                                        Data</button>
                                 </form>
                             </div>
                         </div>
@@ -227,27 +205,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
+        <script>
+        function confirmDelete() {
+            Swal.fire({
+                title: 'Delete All Data',
+                text: 'Are you sure you want to delete all data?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('clearAllForm').submit();
+                }
+            });
+        }
+        </script>
         <a href="javaScript:;" class="back-to-top">
             <ion-icon name="arrow-up-outline"></ion-icon>
         </a>
         <div class="overlay nav-toggle-icon"></div>
         <?php include 'footer.php' ?>
+
     </div>
 
+
     <!-- JS Files-->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-    <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <!--plugins-->
-    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-    <script src="assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
-    <script src="assets/plugins/easyPieChart/jquery.easypiechart.js"></script>
-    <script src="assets/plugins/chartjs/chart.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    <!-- Main JS-->
-    <script src="assets/js/main.js"></script>
+    <?php include 'js.php' ?>
+
 </body>
 
 </html>

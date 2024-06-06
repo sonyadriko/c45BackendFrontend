@@ -12,7 +12,7 @@
         <li>
             <a href="index.php">
                 <div class="parent-icon">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <ion-icon name="speedometer-outline"></ion-icon>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
@@ -20,7 +20,7 @@
         <li>
             <a href="data_training.php">
                 <div class="parent-icon">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <ion-icon name="book-outline"></ion-icon>
                 </div>
                 <div class="menu-title">Data Training</div>
             </a>
@@ -28,7 +28,7 @@
         <li>
             <a href="mining.php">
                 <div class="parent-icon">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <ion-icon name="hammer-outline"></ion-icon>
                 </div>
                 <div class="menu-title">Mining</div>
             </a>
@@ -36,7 +36,7 @@
         <li>
             <a href="testing.php">
                 <div class="parent-icon">
-                    <ion-icon name="home-outline"></ion-icon>
+                    <ion-icon name="flask-outline"></ion-icon>
                 </div>
                 <div class="menu-title">Pengujian</div>
             </a>

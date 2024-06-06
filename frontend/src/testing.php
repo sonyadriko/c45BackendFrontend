@@ -1,36 +1,12 @@
 <?php 
-include 'koneksi.php';
+include '../config/database.php';
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- loader-->
-    <link href="assets/css/pace.min.css" rel="stylesheet" />
-    <script src="assets/js/pace.min.js"></script>
-
-    <!--plugins-->
-    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
-
-    <!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
-    <!--Theme Styles-->
-    <link href="assets/css/dark-theme.css" rel="stylesheet" />
-    <link href="assets/css/semi-dark.css" rel="stylesheet" />
-    <link href="assets/css/header-colors.css" rel="stylesheet" />
-
-    <title>Tree</title>
+    <title>Pengujian</title>
+    <?php include 'scripts.php'; ?>
 </head>
 
 <body>
@@ -133,28 +109,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validasi respons dari API
     if (is_array($data) && isset($data['confusion_details'], $data['classification_report'])) {
         // Tampilkan informasi
-        echo "Accuracy: " . $data['accuracy'] . "<br>";
-        echo "Confusion Matrix: <br>";
+      
+        echo "<h2>Confusion Matrix:</h2>";
+        echo "<div class='confusion-matrix'>";
         foreach ($data['confusion_matrix'] as $row) {
-            echo implode(' ', $row) . "<br>";
+            echo "<div class='confusion-row'>" . implode(' ', $row) . "</div>";
         }
-
-        // Tampilkan TN, FP, FN, TP jika tersedia
-        foreach ($data['confusion_details'] as $class => $details) {
-            echo "<h3>$class:</h3>";
-            echo "TP: " . $details['TP'] . "<br>";
-            echo "TN: " . $details['TN'] . "<br>";
-            echo "FP: " . $details['FP'] . "<br>";
-            echo "FN: " . $details['FN'] . "<br>";
-        }
+        echo "</div>";
+        // // Tampilkan TN, FP, FN, TP jika tersedia
+        // foreach ($data['confusion_details'] as $class => $details) {
+        //     echo "<h3>$class:</h3>";
+        //     echo "TP: " . $details['TP'] . "<br>";
+        //     echo "TN: " . $details['TN'] . "<br>";
+        //     echo "FP: " . $details['FP'] . "<br>";
+        //     echo "FN: " . $details['FN'] . "<br>";
+        // }
 
         // echo "Classification Report: <pre>" . $data['classification_report'] . "</pre><br>";
-        echo "Precision: " . $data['precision'] . "<br>";
-        echo "F1 Score: " . $data['f1_score'] . "<br>";
-        echo "Recall: " . $data['recall'] . "<br>";
+        echo "<strong>Accuracy:</strong> " . $data['accuracy'] . "<br>";
+        echo "<strong>Precision:</strong> " . $data['precision'] . "<br>";
+        echo "<strong>F1 Score:</strong> " . $data['f1_score'] . "<br>";
+        echo "<strong>Recall:</strong> " . $data['recall'] . "<br>";
 
     } else {
-        echo 'Data yang diterima dari API tidak lengkap atau tidak valid.';
+        echo ' Data yang diterima dari API tidak lengkap atau tidak valid.';
     }
 }
 ?>
@@ -255,24 +233,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="overlay nav-toggle-icon"></div>
         <!--end overlay-->
         <?php include 'footer.php' ?>
+
     </div>
     <!--end wrapper-->
 
 
-    <!-- JS Files-->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-    <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <!--plugins-->
-    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-    <script src="assets/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
-    <script src="assets/plugins/easyPieChart/jquery.easypiechart.js"></script>
-    <script src="assets/plugins/chartjs/chart.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    <!-- Main JS-->
-    <script src="assets/js/main.js"></script>
+    <?php include 'js.php' ?>
 
 
 </body>
