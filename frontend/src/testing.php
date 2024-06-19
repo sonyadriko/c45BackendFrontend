@@ -126,82 +126,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // }
 
         // echo "Classification Report: <pre>" . $data['classification_report'] . "</pre><br>";
-        echo "<strong>Accuracy:</strong> " . $data['accuracy'] . "<br>";
-        echo "<strong>Precision:</strong> " . $data['precision'] . "<br>";
-        echo "<strong>F1 Score:</strong> " . $data['f1_score'] . "<br>";
-        echo "<strong>Recall:</strong> " . $data['recall'] . "<br>";
+        echo "<strong>Accuracy:</strong> " . number_format($data['accuracy'], 3) . "<br>";
+        echo "<strong>Precision:</strong> " . number_format($data['precision'], 3) . "<br>";
+        echo "<strong>F1 Score:</strong> " . number_format($data['f1_score'], 3) . "<br>";
+        echo "<strong>Recall:</strong> " . number_format($data['recall'], 3) . "<br>";
+        
 
     } else {
         echo ' Data yang diterima dari API tidak lengkap atau tidak valid.';
     }
 }
 ?>
-
-
-                <?php
-// $url = "http://localhost:5000/testc45";  // Adjust the URL based on your Flask API location
-
-// $ch = curl_init($url); 
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// curl_setopt($ch, CURLOPT_HEADER, false);
-// $response = curl_exec($ch);
-
-// if ($response === false) {
-//     echo 'Error during communication: ' . curl_error($ch);
-//     curl_close($ch);
-//     exit;
-// }
-
-// curl_close($ch);
-// // $result = json_decode($response, true);  // Decode the JSON response into an associative array// Menggunakan curl atau GuzzleHTTP untuk mendapatkan $data
-// $data = json_decode($response, true);
-// // Validasi respons dari API
-// if (is_array($data) && isset($data['confusion_details'], $data['classification_report'])) {
-//     // Tampilkan informasi
-//     echo "Accuracy: " . $data['accuracy'] . "<br>";
-//     echo "Confusion Matrix: <br>";
-//     foreach ($data['confusion_matrix'] as $row) {
-//         echo implode(' ', $row) . "<br>";
-//     }
-
-//     // Tampilkan TN, FP, FN, TP jika tersedia
-//     foreach ($data['confusion_details'] as $class => $details) {
-//         echo "<h3>$class:</h3>";
-//         echo "TP: " . $details['TP'] . "<br>";
-//         echo "TN: " . $details['TN'] . "<br>";
-//         echo "FP: " . $details['FP'] . "<br>";
-//         echo "FN: " . $details['FN'] . "<br>";
-//     }
-
-//     echo "Classification Report: <pre>" . $data['classification_report'] . "</pre><br>";
-//     echo "Precision: " . $data['precision'] . "<br>";
-//     echo "F1 Score: " . $data['f1_score'] . "<br>";
-//     echo "Recall: " . $data['recall'] . "<br>";
-
-// } else {
-//     echo 'Data yang diterima dari API tidak lengkap atau tidak valid.';
-// }
-                ?>
-
-
-
-
-                <?php
-// $url = "http://localhost:5000/model_info";
-// $response = file_get_contents($url);
-// $model_info = json_decode($response, true);
-
-// echo "<pre>";
-// print_r($model_info);
-// echo "</pre>";
-?>
-
-
-
-
-
-
-
 
                 <!--end row-->
 
@@ -210,26 +145,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <!-- end page content-->
         </div>
-        <!--end page content wrapper-->
-
-
-        <!--start footer-->
-
-        <!--end footer-->
-
-
         <!--Start Back To Top Button-->
         <a href="javaScript:;" class="back-to-top">
             <ion-icon name="arrow-up-outline"></ion-icon>
         </a>
-        <!--End Back To Top Button-->
-
-        <!--start switcher-->
-
-        <!--end switcher-->
-
-
-        <!--start overlay-->
         <div class="overlay nav-toggle-icon"></div>
         <!--end overlay-->
         <?php include 'footer.php' ?>
