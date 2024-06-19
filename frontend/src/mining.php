@@ -272,8 +272,8 @@ $best_attribute = '';
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         // Convert spkts data to category based on the value
-                        $row['spkts'] = $row['spkts'] <= 10 ? 'low' : 'high';
-                        $row['sbytes'] = $row['sbytes'] <= 768 ? 'low' : 'high';
+                        $row['spkts'] = $row['spkts'] <= 12 ? 'low' : 'high';
+                        $row['sbytes'] = $row['sbytes'] <= 826 ? 'low' : 'high';
                         $row['sttl'] = $row['sttl'] == 31 ? 'low' : ($row['sttl'] == 62 ? 'med' : 'high');
                         $row['smean'] = $row['smean'] <= 78 ? 'low' : 'high';
                         $data_training[] = $row;
